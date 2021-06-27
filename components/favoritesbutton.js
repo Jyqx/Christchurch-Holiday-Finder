@@ -21,37 +21,46 @@ import StarRating from '../components/starRating'
  
 
 
-class FavoritesButtons extends React.Component () {
+class FavoritesButtons extends React.Component{
   constructor(props){
-    super();
+    super(props);
+//      console.log("constructor", props.props)
       this.state={
-        textValue: 'Temporary text',
+        textValue: 'Mark as Favorite',
+//        favorite: false,
         styleValue: {backgroundColor: 'red'},
-        marker: markers[props.key]
+        markerId: props.markerId
       };
   }
 
 
 render(){
   return(
+  <View style={styles.button}>  
     <TouchableOpacity
                   style={styles.favorited}
                   onPress={() => {
-                    var marker = this.state.marker
+                    console.log(this.state.markerId)
+                    let marker = markers[this.state.markerId]
+                    marker.isFavorited = !marker.isFavorited                  
                     if(marker.isFavorited){
-                      marker.isFavorited = false
                       this.setState({
-                        textValue: "XYZ"
+                        textValue: "Favorite!", 
+                        styleValue: {backgroundColor: 'blue'}
                       })
                     } 
                     else{
-                      marker.isFavorited = true
+                      this.setState({
+                        textValue: "Mark as Favorite", 
+                        styleValue: {backgroundColor: 'yellow'}
+                      })
 
                     }
                     }}
                 >
                     <Text style={this.state.styleValue}>{this.state.textValue}</Text>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   )
   }
 }
@@ -60,12 +69,16 @@ export default FavoritesButtons;
 
 const styles = StyleSheet.create({
 
-    favorited: {
-      width: '100%',
-      padding:5,
-      justifyContent: 'center',
+  favorited: {
+    width: '100%',
+    padding:5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 3,
+    backgroundColor: "tomato"
+  },
+  button: {
       alignItems: 'center',
-      borderRadius: 3,
-      backgroundColor: "tomato"
-    },
+      marginTop: 5
+  },
   })

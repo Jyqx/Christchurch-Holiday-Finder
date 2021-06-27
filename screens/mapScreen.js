@@ -173,9 +173,7 @@ return (
               <Text numberOfLines={1} style={styles.cardtitle}>{marker.title}</Text>
               <StarRating ratings={marker.rating} reviews={marker.reviews} />
               <Text numberOfLines={1} style={styles.cardDescription}>{marker.description}</Text>
-              <View style={styles.button}>
-                <FavoritesButton key={index}></FavoritesButton>
-              </View>
+                <FavoritesButton markerId={index}></FavoritesButton>
             </View>
           </View>
       ))}
@@ -254,25 +252,6 @@ const styles = StyleSheet.create({
   cardDescription: {
     fontSize: 12,
     color: "#DCDCDC",
-  },
-    notfavorited: {
-      width: '100%',
-      padding:5,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 3,
-    },
-    favorited: {
-      width: '100%',
-      padding:5,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 3,
-      backgroundColor: "tomato"
-    },
-      button: {
-    alignItems: 'center',
-    marginTop: 5
   },
 });
 

@@ -25,7 +25,7 @@ export const markers = [
     image: Images[0].image,
     rating: 5,
     reviews: 193,
-    isFavorited: true,
+    isFavorited: false,
   },
   {
     coordinate: {
@@ -53,6 +53,6 @@ export const markers = [
     image: Images[2].image,
     rating: 4.5,
     reviews: 585,
-    isFavorited: true,
+    isFavorited: false,
   },
 ];
