@@ -13,6 +13,13 @@ import {
   FlatList,
 } from 'react-native';
 import { markers, } from '../model/MapData';
+import StarRating from '../components/starRating';
+import FavoritesButton from '../components/favoritesbutton';
+
+const { width, height } = Dimensions.get("window");
+const CARD_HEIGHT = 220;
+const CARD_WIDTH = width * 0.8;
+const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
 const IsFavorited = (props) => {
 
@@ -30,7 +37,18 @@ const IsFavorited = (props) => {
               <FlatList
                 data={favs}
                 renderItem={({ item }) => (
-                  <Text style={styles.item}>{item.title}</Text>
+                  <View style={styles.card}>
+                  <Image 
+                   source={item.image}
+                    style={styles.cardImage}
+                    resizeMode="cover"
+                  />
+            <View style={styles.textContent}>
+              <Text numberOfLines={1} style={styles.cardtitle}>{item.title}</Text>
+              <StarRating ratings={item.rating} reviews={item.reviews} />
+              <Text numberOfLines={1} style={styles.cardDescription}>{item.description}</Text>
+            </View>
+          </View>
                 )}
               />
             </View>
@@ -49,5 +67,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     backgroundColor: '#485696',
+  },
+  card: {
+    // padding: 10,
+    backgroundColor: "#052E6C",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 5,
+    borderBottomLeftRadius: 5,
+    marginHorizontal: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 8,
+    height: CARD_HEIGHT,
+    width: CARD_WIDTH,
+    overflow: "hidden",
+  },
+    cardtitle: {
+    fontSize: 12,
+    color: '#fff',
+    // marginTop: 5,
+    fontWeight: "bold",
+  },
+  cardDescription: {
+    fontSize: 12,
+    color: "#DCDCDC",
+  },
+    textContent: {
+    flex: 2,
+    padding: 10,
+  },
+    cardImage: {
+    flex: 3,
+    width: "100%",
+    height: "100%",
+    alignSelf: "center",
   },
 });

@@ -26,9 +26,8 @@ class FavoritesButtons extends React.Component{
     super(props);
 //      console.log("constructor", props.props)
       this.state={
-        textValue: 'Mark as Favorite',
-//        favorite: false,
-        styleValue: {backgroundColor: 'red'},
+        textValue: 'Favorite this!',
+        styleValue: styles.notFavorited,
         markerId: props.markerId
       };
   }
@@ -38,27 +37,27 @@ render(){
   return(
   <View style={styles.button}>  
     <TouchableOpacity
-                  style={styles.favorited}
+                  style={this.state.styleValue}
                   onPress={() => {
                     console.log(this.state.markerId)
                     let marker = markers[this.state.markerId]
                     marker.isFavorited = !marker.isFavorited                  
                     if(marker.isFavorited){
                       this.setState({
-                        textValue: "Favorite!", 
-                        styleValue: {backgroundColor: 'blue'}
+                        textValue: "Remove from Favorites!",
+                        styleValue: styles.favorited
                       })
                     } 
                     else{
                       this.setState({
-                        textValue: "Mark as Favorite", 
-                        styleValue: {backgroundColor: 'yellow'}
+                        textValue: "Favorite this!", 
+                        styleValue: styles.notFavorited
                       })
 
                     }
                     }}
                 >
-                    <Text style={this.state.styleValue}>{this.state.textValue}</Text>
+                    <Text style={styles.favTitle}>{this.state.textValue}</Text>
       </TouchableOpacity>
     </View>
   )
@@ -77,8 +76,21 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     backgroundColor: "tomato"
   },
+  notFavorited: {
+    width: '100%',
+    padding:5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 3,
+    backgroundColor: "#00994d"
+  },
   button: {
       alignItems: 'center',
       marginTop: 5
+  },
+  favTitle: {
+    fontSize: 12,
+    color: '#fff',
+    fontWeight: "bold",
   },
   })

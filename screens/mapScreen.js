@@ -32,8 +32,8 @@ const intialMapState = {
   region: {
     latitude: -43.532,
     longitude: 172.6306,
-    latitudeDelta: 0.4,
-    longitudeDelta: 0.4,
+    latitudeDelta: 0.3,
+    longitudeDelta: 0.3,
   },
 };
 
