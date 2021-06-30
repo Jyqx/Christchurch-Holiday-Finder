@@ -20,13 +20,16 @@ import { markers, } from '../model/MapData';
 import StarRating from '../components/starRating'
 import FavoritesButton from '../components/favoritesbutton.js'
 
+//These check the device height and set varibles the match the device screen size so it works on multiple devices.
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 220;
 const CARD_WIDTH = width * 0.8;
 const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
+//This is the maine file for the map screen and will display the main contents of the map
 function MapFileScreen() {
 
+//This sets the coordinates to the christchurch region and zooms into it.
 const intialMapState = {
   markers,
   region: {
@@ -39,6 +42,7 @@ const intialMapState = {
 
 const [state, setState] = React.useState(intialMapState);
 
+//These variables allow the zooming function to work
 let mapIndex = 0;
 let mapAnimation = new Animated.Value(0);
 
@@ -54,6 +58,7 @@ let mapAnimation = new Animated.Value(0);
 
       clearTimeout(regionTimeout);
 
+//This is the zoom in variable that will store so it can call it back when it wants to zoom in
       const regionTimeout = setTimeout(() => {
         if( mapIndex !== index ) {
           mapIndex = index;
@@ -71,6 +76,7 @@ let mapAnimation = new Animated.Value(0);
     });
   });
 
+//This zooms into the marker when you swipe back and forward
   const interpolations = state.markers.map((marker, index) => {
     const inputRange = [
       (index - 1) * CARD_WIDTH,
@@ -78,6 +84,7 @@ let mapAnimation = new Animated.Value(0);
       ((index + 1) * CARD_WIDTH),
     ];
 
+//This changes the values so we can use two different types of animation at the same time
     const scale = mapAnimation.interpolate({
       inputRange,
       outputRange: [1, 1.5, 1],
@@ -87,6 +94,7 @@ let mapAnimation = new Animated.Value(0);
     return { scale };
   });
 
+//This is variable that will be called when you click one of the icons and animate to that marker and shows the card with the information
   const onMarkerPress = (mapEventData) => {
     const markerID = mapEventData._targetInst.return.key;
 
@@ -102,9 +110,10 @@ let mapAnimation = new Animated.Value(0);
 const _map = React.useRef(null);
 const _scrollView = React.useRef(null);
 
+//This renders all the variables from above and uses them to make a working map Adding comments into this section will mess up the code.
 return (
   <View style={styles.container0}>
-    <MapView
+    <MapView 
         ref={_map}
         initialRegion={state.region}
         style={styles.map}
@@ -119,7 +128,7 @@ return (
           };
           return (
             <MapView.Marker key={index} coordinate={marker.coordinate} onPress={(e)=>onMarkerPress(e)}>
-              <Animated.View style={[styles.markerWrap]}>
+              <Animated.View style={[styles.markerWrap]}> 
                 <Animated.Image
                   key={index}
                   source={marker.icon}
@@ -131,7 +140,7 @@ return (
           );
         })}
       </MapView>
-      <Animated.ScrollView
+      <Animated.ScrollView 
         ref={_scrollView}
         horizontal
         scrollEventThrottle={1}
@@ -163,7 +172,7 @@ return (
         )}
       >
       {state.markers.map((marker, index) =>(
-          <View style={styles.card} key={index}>
+          <View style={styles.card} key={index}> 
             <Image 
               source={marker.image}
               style={styles.cardImage}
@@ -184,6 +193,7 @@ return (
 
 export default MapFileScreen;
 
+//These are the styles that use ccs elements to style the map
 const styles = StyleSheet.create({
 
   container0: {

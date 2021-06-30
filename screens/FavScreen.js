@@ -16,11 +16,14 @@ import { markers, } from '../model/MapData';
 import StarRating from '../components/starRating';
 import FavoritesButton from '../components/favoritesbutton';
 
+//These check the device height and set varibles the match the device screen size so it works on multiple devices.
 const { width, height } = Dimensions.get("window");
-const CARD_HEIGHT = 220;
-const CARD_WIDTH = width * 0.8;
+const CARD_HEIGHT = 190;
+const CARD_WIDTH = width * 0.9;
 const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
+//This Variable stores the values for the different items that are favorited. 
+//It will check to see if the user has favorited the item and display it in flatlist
 const IsFavorited = (props) => {
 
     // This array will contain our star tags and allow us to set a star rating from 1 to 5
@@ -34,7 +37,8 @@ const IsFavorited = (props) => {
     }  
     return (
             <View style={styles.container0}>
-              <FlatList
+              <FlatList //This is a flatlist and lists out all of the Favorite items.
+              style={styles.container0}
                 data={favs}
                 renderItem={({ item }) => (
                   <View style={styles.card}>
@@ -43,10 +47,10 @@ const IsFavorited = (props) => {
                     style={styles.cardImage}
                     resizeMode="cover"
                   />
-            <View style={styles.textContent}>
+            <View style={styles.textContent}> 
               <Text numberOfLines={1} style={styles.cardtitle}>{item.title}</Text>
               <StarRating ratings={item.rating} reviews={item.reviews} />
-              <Text numberOfLines={1} style={styles.cardDescription}>{item.description}</Text>
+              <Text style={styles.cardDescription}>{item.description}</Text>
             </View>
           </View>
                 )}
@@ -61,21 +65,19 @@ const styles = StyleSheet.create({
 
   container0: {
     flex: 1,
-    flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    alignContent: 'center',
     backgroundColor: '#485696',
   },
   card: {
     // padding: 10,
+    margin: 10,
     backgroundColor: "#052E6C",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 5,
-    marginHorizontal: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,

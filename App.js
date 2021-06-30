@@ -9,6 +9,7 @@ import {
   ImageBackground,
   Content,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Icon } from 'react-native-elements';
@@ -20,6 +21,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AppButton from './components/Button';
 import MapFileScreen from './screens/mapScreen';
 import FavFileScreen from './screens/FavScreen';
+
 
 const Helping = createStackNavigator();
 
@@ -56,7 +58,7 @@ function HowToUseApp() {
   return (
     <View style={styles.container0}>
       <View style={styles.button1}>
-        <Text> This is lanuage settings </Text>
+        <Text> This is how to use the app </Text>
       </View>
     </View>
   );
@@ -65,7 +67,7 @@ function Privacy() {
   return (
     <View style={styles.container0}>
       <View style={styles.button1}>
-        <Text> This is general settings </Text>
+        <Text> These are the privacy settings </Text>
       </View>
     </View>
   );
@@ -74,7 +76,7 @@ function Sources() {
   return (
     <View style={styles.container0}>
       <View style={styles.button1}>
-        <Text> Bruh </Text>
+        <Text> These are my sources </Text>
       </View>
     </View>
   );
@@ -169,7 +171,7 @@ function AccessibilitySettings() {
   return (
     <View style={styles.container0}>
       <View style={styles.button1}>
-        <Text> Bruh </Text>
+        <Text> These are the accessibility settings </Text>
       </View>
     </View>
   );
@@ -219,6 +221,7 @@ function HomeScreen({ navigation }) {
   return (
     <View style={styles.container0}>
       <View style={styles.button1}>
+        <StatusBar  barStyle="light-content" translucent={true} />
         <AppButton
           onPress={() => navigation.push('Map')}
           title="Maps"
@@ -335,8 +338,5 @@ const styles = StyleSheet.create({
   space: {
     width: 10,
     height: 20,
-  },
-  rounded: {
-    borderRadius: 5,
   },
 });
