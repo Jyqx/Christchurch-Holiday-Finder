@@ -1,1 +1,1 @@
-# ReactNzFinder
+# Christchurch Holiday Finder Prototype
